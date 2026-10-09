@@ -1,3 +1,6 @@
 {"name":"Sleepcasts","short_name":"Sleepcasts","id":"./","start_url":"./","scope":"./","display":"standalone",
 "background_color":"#06070b","theme_color":"#06070b",
-"icons":[{"src":"img/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"img/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}
+"icons":[{"src":"img/moon-180.png","sizes":"180x180","type":"image/png","purpose":"any"},
+{"src":"img/moon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+{"src":"img/moon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
+{"src":"img/moon-512-maskable.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]}

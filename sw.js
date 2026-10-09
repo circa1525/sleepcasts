@@ -1,6 +1,6 @@
 const CACHE = 'sleepcasts-shell-v5';
 const SHELL = ['./', 'index.html', 'app.css', 'app.js', 'manifest.webmanifest', 'data/stories.json',
-  'img/icon-180.png', 'img/icon-192.png', 'img/icon-512.png',
+  'img/moon-32.png', 'img/moon-180.png', 'img/moon-192.png', 'img/moon-512.png', 'img/moon-512-maskable.png',
   'img/harbor.png', 'img/train.png', 'img/cabin.png', 'img/greenhouse.png', 'img/library.png', 'img/lake.png',
   'img/harbor-512.png', 'img/train-512.png', 'img/cabin-512.png', 'img/greenhouse-512.png', 'img/library-512.png', 'img/lake-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
