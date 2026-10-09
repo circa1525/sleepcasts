@@ -45,7 +45,7 @@ function choose(s, autoplay) {
   if (cur && cur.id === s.id && mode === 'story') { if (autoplay) toggle(); return; }
   if (cur && mode === 'story' && audio.currentTime > 0) setPos(cur.id, audio.currentTime);
   cur = s; localStorage.setItem('last', s.id);
-  $('#player').hidden = false;
+  $('#player').hidden = false; $('#mini-title').textContent = s.title; $('#mini-art').src = s.art; applyCollapsed();
   $('#np-title').textContent = s.title; $('#np-narr').textContent = narrLabel(s); $('#np-art').src = s.art;
   loadStory(s, getPos(s.id));
   setMedia(); refreshMeta(); updateUI();
@@ -121,11 +121,12 @@ setInterval(checkTimer, 1000);
 function updateUI() {
   if (!cur) return;
   const playing = !audio.paused;
-  $('#play').textContent = playing ? '❚❚' : '▶';
-  $('#play').setAttribute('aria-label', playing ? 'Pause' : 'Play');
+  for (const id of ['#play', '#mini-play']) { $(id).textContent = playing ? '❚❚' : '▶'; $(id).setAttribute('aria-label', playing ? 'Pause' : 'Play'); }
   const d = cur.duration, t = mode === 'story' ? audio.currentTime : getPos(cur.id);
   $('#np-time').textContent = mode === 'outro' ? 'Fading out…' : `${fmt(t)} / ${fmt(d)}`;
   if (!seeking) $('#seek').value = Math.round(1000 * t / d);
+  $('#mini-prog div').style.width = (100 * Math.min(1, t / d)).toFixed(2) + '%';
+  $('#mini-sub').textContent = narrLabel(cur) + ' · ' + (mode === 'outro' ? 'Fading out…' : `${fmt(t)} / ${fmt(d)}`);
   $('#timer-left').textContent = timer.deadline ? (timer.fading ? 'Fading out…' : `Stops in ${fmt((timer.deadline - Date.now()) / 1000)}` + (audio.paused ? ' (starts counting on play)' : ''))
     : (timer.kind !== 'end' ? `${timer.kind} min timer starts when you press play` : 'Plays to the end. The ambience fades out slowly after the story.');
   if ('mediaSession' in navigator) navigator.mediaSession.playbackState = playing ? 'playing' : 'paused';
@@ -134,6 +135,31 @@ let seeking = false;
 $('#seek').addEventListener('input', () => { seeking = true; });
 $('#seek').addEventListener('change', () => { seeking = false; if (cur && mode === 'story') audio.currentTime = $('#seek').value / 1000 * cur.duration; });
 $('#play').onclick = toggle;
+$('#mini-play').onclick = toggle;
+
+// ---- collapsible player: mini bar <-> full player; state remembered ----
+let collapsed = localStorage.getItem('playerCollapsed') === '1';
+const player = $('#player');
+function setPad() {   // keep the last card reachable above the player (+ home indicator, already inside the player's height)
+  const h = player.hidden ? 0 : player.getBoundingClientRect().height;
+  document.body.style.setProperty('--pb', (collapsed ? h + 16 : (player.hidden ? 24 : Math.min(h, innerHeight * 0.6) + 16)) + 'px');
+}
+function applyCollapsed() { player.classList.toggle('collapsed', collapsed); requestAnimationFrame(setPad); }
+function setCollapsed(c) { collapsed = c; localStorage.setItem('playerCollapsed', c ? '1' : '0'); lastY = scrollY; applyCollapsed(); }
+$('#collapse').onclick = () => setCollapsed(true);
+$('#mini-open').onclick = () => setCollapsed(false);
+$('#mini-expand').onclick = () => setCollapsed(false);
+// scrolling the story list minimizes the full player
+let lastY = scrollY;
+addEventListener('scroll', () => { if (!collapsed && !player.hidden && Math.abs(scrollY - lastY) > 40) setCollapsed(true); }, { passive: true });
+// swipe down on the full player (when it is scrolled to its top) minimizes it; swipe up on the mini bar expands
+let ty = null;
+$('#full').addEventListener('touchstart', e => { ty = $('#full').scrollTop <= 0 ? e.touches[0].clientY : null; }, { passive: true });
+$('#full').addEventListener('touchend', e => { if (ty !== null && e.changedTouches[0].clientY - ty > 60) setCollapsed(true); ty = null; }, { passive: true });
+$('#mini').addEventListener('touchstart', e => { ty = e.touches[0].clientY; }, { passive: true });
+$('#mini').addEventListener('touchend', e => { if (ty !== null && ty - e.changedTouches[0].clientY > 40) setCollapsed(false); ty = null; }, { passive: true });
+if ('ResizeObserver' in window) new ResizeObserver(setPad).observe(player);
+addEventListener('resize', setPad);
 $('#back').onclick = () => back(15);
 $('#restart').onclick = () => { if (!cur) return; if (mode === 'outro') loadStory(cur, 0); else audio.currentTime = 0; setPos(cur.id, 0); play(); };
 document.querySelectorAll('.chip').forEach(c => c.onclick = () => {
