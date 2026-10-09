@@ -1,5 +1,5 @@
-{"name":"Sleepcasts","short_name":"Sleepcasts","id":"/sleepcasts/?app=sleepcasts-moon","start_url":"/sleepcasts/","scope":"/sleepcasts/","display":"standalone",
+{"name":"Sleepcasts","short_name":"Sleepcasts","id":"/sleepcasts/?app=sleepcasts-night","start_url":"/sleepcasts/","scope":"/sleepcasts/","display":"standalone",
 "background_color":"#06070b","theme_color":"#06070b",
-"icons":[{"src":"https://circa1525.github.io/sleepcasts/img/crescent-180.png","sizes":"180x180","type":"image/png"},
-{"src":"https://circa1525.github.io/sleepcasts/img/crescent-192.png","sizes":"192x192","type":"image/png"},
-{"src":"https://circa1525.github.io/sleepcasts/img/crescent-512.png","sizes":"512x512","type":"image/png"}]}
+"icons":[{"src":"https://circa1525.github.io/sleepcasts/img/night-180.png","sizes":"180x180","type":"image/png"},
+{"src":"https://circa1525.github.io/sleepcasts/img/night-192.png","sizes":"192x192","type":"image/png"},
+{"src":"https://circa1525.github.io/sleepcasts/img/night-512.png","sizes":"512x512","type":"image/png"}]}
