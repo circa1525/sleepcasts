@@ -1,4 +1,4 @@
-const CACHE = 'sleepcasts-shell-v7';
+const CACHE = 'sleepcasts-shell-v8';
 const SHELL = ['./', 'index.html', 'app.css', 'app.js', 'manifest.webmanifest', 'data/stories.json',
   'img/moon-32.png', 'img/moon-180.png', 'img/moon-192.png', 'img/moon-512.png', 'img/moon-512-maskable.png',
   'img/harbor.png', 'img/train.png', 'img/cabin.png', 'img/greenhouse.png', 'img/library.png', 'img/lake.png',

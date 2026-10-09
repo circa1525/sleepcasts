@@ -1,6 +1,5 @@
-{"name":"Sleepcasts","short_name":"Sleepcasts","id":"./","start_url":"./","scope":"./","display":"standalone",
+{"name":"Sleepcasts","short_name":"Sleepcasts","id":"/sleepcasts/?app=sleepcasts-moon","start_url":"/sleepcasts/","scope":"/sleepcasts/","display":"standalone",
 "background_color":"#06070b","theme_color":"#06070b",
-"icons":[{"src":"img/moon-180.png","sizes":"180x180","type":"image/png","purpose":"any"},
-{"src":"img/moon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
-{"src":"img/moon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
-{"src":"img/moon-512-maskable.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]}
+"icons":[{"src":"https://circa1525.github.io/sleepcasts/img/crescent-180.png","sizes":"180x180","type":"image/png"},
+{"src":"https://circa1525.github.io/sleepcasts/img/crescent-192.png","sizes":"192x192","type":"image/png"},
+{"src":"https://circa1525.github.io/sleepcasts/img/crescent-512.png","sizes":"512x512","type":"image/png"}]}
