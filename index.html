@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#06070b">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sleepcasts">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<link rel="icon" href="img/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="app.css">
+<title>Sleepcasts</title>
+</head>
+<body>
+<header><h1>Sleepcasts</h1><p class="sub">Slow stories for drifting off</p></header>
+<main id="list" aria-label="Sleepcasts"></main>
+
+<section id="player" hidden aria-label="Now playing">
+  <div class="now"><img id="np-art" alt=""><div><div id="np-title"></div><div class="dim small"><span id="np-narr"></span> · <span id="np-time"></span></div></div></div>
+  <input id="seek" type="range" min="0" max="1000" value="0" aria-label="Position">
+  <div class="controls">
+    <button id="back" class="round" aria-label="Back 15 seconds"><span>↺</span><small>15</small></button>
+    <button id="play" class="round big" aria-label="Play">▶</button>
+    <button id="restart" class="round" aria-label="Start over"><span>⟲</span><small>start</small></button>
+  </div>
+  <div class="timer" role="group" aria-label="Sleep timer">
+    <span class="dim">Sleep timer</span>
+    <div class="chips">
+      <button data-t="end" class="chip on">End of story</button>
+      <button data-t="15" class="chip">15 m</button>
+      <button data-t="30" class="chip">30 m</button>
+      <button data-t="45" class="chip">45 m</button>
+      <button data-t="60" class="chip">60 m</button>
+    </div>
+    <div id="timer-left" class="dim small"></div>
+  </div>
+</section>
+<audio id="audio" preload="metadata"></audio>
+<script src="app.js"></script>
+</body>
+</html>
